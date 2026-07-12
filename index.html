@@ -121,11 +121,7 @@
   .chip{background:#EEF4F3;border:1px solid #D7E6E4;color:#0E5E5A;font-size:13px;font-weight:500;padding:5px 11px;border-radius:20px;}
 
   /* projects / dashboards */
-  .projects{display:flex;flex-direction:column;gap:28px;}
-  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;background:#0F1B2D;padding:14px;}
-  .shots figure{margin:0;}
-  .shots img{width:100%;display:block;border-radius:8px;border:1px solid rgba(255,255,255,.10);}
-  .shots figcaption{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.5px;color:#8FB7B3;text-align:center;margin-top:6px;text-transform:uppercase;}
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
   .project{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s, box-shadow .18s;}
   .project:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(15,27,45,.12);}
   .thumb{position:relative;aspect-ratio:16/10;background:#0F1B2D;display:flex;align-items:center;justify-content:center;overflow:hidden;}
@@ -139,7 +135,6 @@
   .project h3{font-size:19px;margin:0;}
   .project p{margin:0;color:var(--muted);font-size:14px;flex:1;}
   .toolrow{display:flex;flex-wrap:wrap;gap:6px;}
-  .hint-click{color:var(--accent-ink);font-weight:500;}
   .tool{font-family:"JetBrains Mono";font-size:11px;color:#0E5E5A;background:#EAF3F2;border:1px solid #D2E5E3;padding:3px 8px;border-radius:6px;}
   .links{display:flex;gap:16px;margin-top:4px;}
   .links a{font-size:13px;font-weight:600;color:var(--accent-ink);text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
@@ -183,16 +178,6 @@
     .spark-line{animation:none;stroke-dashoffset:0;}
     .spark-area,.spark-dot{animation:none;opacity:1;}
   }
-
-  .shots img{cursor:zoom-in;transition:filter .15s;}
-  .shots img:hover{filter:brightness(1.06);}
-  /* lightbox: view a dashboard full-size on the page */
-  .lightbox{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(8,15,24,.93);padding:24px;}
-  .lightbox.open{display:flex;}
-  .lightbox img{max-width:96vw;max-height:86vh;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.55);}
-  .lb-close{position:absolute;top:14px;right:20px;background:none;border:none;color:#fff;font-size:36px;line-height:1;cursor:pointer;padding:4px 10px;}
-  .lb-close:hover{color:var(--gold);}
-  .lb-cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#B9C6D4;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -321,32 +306,110 @@
     <div class="projects reveal">
 
       <article class="project">
-        <div class="shots">
-          <figure><img src="images/dashboard-1.png" alt="HR headcount dashboard in Power BI" onerror="this.closest(&quot;figure&quot;).style.display=&quot;none&quot;" /><figcaption>Headcount</figcaption></figure>
-          <figure><img src="images/dashboard-2.png" alt="HR turnover dashboard in Power BI" onerror="this.closest(&quot;figure&quot;).style.display=&quot;none&quot;" /><figcaption>Turnover</figcaption></figure>
+        <div class="thumb">
+          <img src="images/dashboard-1.png" alt="HR headcount dashboard built in Power BI"
+               onerror="this.closest('.thumb').classList.add('empty')" />
+          <span class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>
+            Add screenshot
+            <span class="mono">images/dashboard-1.png</span>
+          </span>
         </div>
         <div class="body">
-          <h3>HR Analytics Dashboard</h3>
-          <p>A two-page Power BI report on workforce headcount and turnover. Built on a star-schema data model with custom DAX measures (Headcount, Turnover %, Departing Employees), sliceable by department, job level, gender, age, education, location and termination reason. <span class="hint-click">Click any image to view it full size.</span></p>
+          <h3>HR Analytics — Headcount</h3>
+          <p>Power BI report on workforce composition: headcount broken down by department, job level, gender, age, education and location. Built on a star-schema model with a dedicated measures table so every visual stays consistent.</p>
           <div class="toolrow"><span class="tool">Power BI</span><span class="tool">DAX</span><span class="tool">Data modelling</span></div>
           <div class="links">
-            <a href="HR_Data_Analysis_Project.pbix" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download Power BI file</a>
+            <!-- TODO: after "Publish to web" in Power BI, paste the public link here (replace #) -->
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>Live report</a>
+            <!-- TODO: upload the .pbix to your repo, then link it here (replace #) -->
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>Power BI file</a>
           </div>
         </div>
       </article>
 
       <article class="project">
-        <div class="shots">
-          <figure><img src="images/dashboard-3.png" alt="ABC Retails customer composition dashboard" onerror="this.closest(&quot;figure&quot;).style.display=&quot;none&quot;" /><figcaption>Customer Composition</figcaption></figure>
-          <figure><img src="images/dashboard-4.png" alt="ABC Retails campaign performance dashboard" onerror="this.closest(&quot;figure&quot;).style.display=&quot;none&quot;" /><figcaption>Campaign Performance</figcaption></figure>
-          <figure><img src="images/dashboard-5.png" alt="ABC Retails purchase driver dashboard" onerror="this.closest(&quot;figure&quot;).style.display=&quot;none&quot;" /><figcaption>Purchase Driver</figcaption></figure>
+        <div class="thumb">
+          <img src="images/dashboard-2.png" alt="HR turnover analysis dashboard built in Power BI"
+               onerror="this.closest('.thumb').classList.add('empty')" />
+          <span class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>
+            Add screenshot
+            <span class="mono">images/dashboard-2.png</span>
+          </span>
         </div>
         <div class="body">
-          <h3>ABC Retails — Market Research</h3>
-          <p>A three-page Power BI market-research report on 2,240 customers and six marketing campaigns: customer composition, campaign performance, and a Key Influencers (AI) page on what drives response. Wines led revenue (681K) and higher-income customers (above ~60K) were 7.8&times; more likely to convert. <span class="hint-click">Click any image to view it full size.</span></p>
-          <div class="toolrow"><span class="tool">Power BI</span><span class="tool">DAX</span><span class="tool">Key Influencers (AI)</span></div>
+          <h3>HR Analytics — Turnover</h3>
+          <p>Companion page tracking attrition: Turnover %, departing employees and trend over time, sliced by department, termination reason and type. Custom DAX measures make it easy to spot where and why people leave.</p>
+          <div class="toolrow"><span class="tool">Power BI</span><span class="tool">DAX</span><span class="tool">Star schema</span></div>
           <div class="links">
-            <a href="ABC_Retails_Market_Research.pbix" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download Power BI file</a>
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>Live report</a>
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>Power BI file</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="thumb">
+          <img src="images/dashboard-3.png" alt="ABC Retails customer composition dashboard in Power BI"
+               onerror="this.closest('.thumb').classList.add('empty')" />
+          <span class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>
+            Add screenshot
+            <span class="mono">images/dashboard-3.png</span>
+          </span>
+        </div>
+        <div class="body">
+          <h3>ABC Retails — Customer Composition</h3>
+          <p>Market-research report profiling 2,240 customers by education, marital status, family size, income and age — and how product preferences shift across age groups (older customers buy more wine, less meat).</p>
+          <div class="toolrow"><span class="tool">Power BI</span><span class="tool">DAX</span><span class="tool">Data modelling</span></div>
+          <div class="links">
+            <!-- TODO: after "Publish to web" in Power BI, paste the public link here (replace #) -->
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>Live report</a>
+            <!-- TODO: upload the .pbix to your repo, then link it here (replace #) -->
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>Power BI file</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="thumb">
+          <img src="images/dashboard-4.png" alt="ABC Retails campaign performance dashboard in Power BI"
+               onerror="this.closest('.thumb').classList.add('empty')" />
+          <span class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>
+            Add screenshot
+            <span class="mono">images/dashboard-4.png</span>
+          </span>
+        </div>
+        <div class="body">
+          <h3>ABC Retails — Campaign Performance</h3>
+          <p>Revenue and purchases across six marketing campaigns and six product lines. Wines led revenue (681K) and Campaigns 5 &amp; 6 drove the most sales, with in-store the dominant purchase channel.</p>
+          <div class="toolrow"><span class="tool">Power BI</span><span class="tool">DAX</span><span class="tool">Star schema</span></div>
+          <div class="links">
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>Live report</a>
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>Power BI file</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="thumb">
+          <img src="images/dashboard-5.png" alt="ABC Retails purchase driver key influencers dashboard in Power BI"
+               onerror="this.closest('.thumb').classList.add('empty')" />
+          <span class="ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>
+            Add screenshot
+            <span class="mono">images/dashboard-5.png</span>
+          </span>
+        </div>
+        <div class="body">
+          <h3>ABC Retails — Purchase Driver</h3>
+          <p>Used Power BI's Key Influencers (AI) visual to find what drives campaign response and total sales. Income was the strongest signal — customers earning above ~60K were 7.8&times; more likely to convert.</p>
+          <div class="toolrow"><span class="tool">Power BI</span><span class="tool">Key Influencers (AI)</span></div>
+          <div class="links">
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>Live report</a>
+            <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>Power BI file</a>
           </div>
         </div>
       </article>
@@ -444,7 +507,7 @@
       <a class="btn btn-primary" href="mailto:maythinn.89@gmail.com">Email me</a>
       <a class="btn btn-ghost" href="https://linkedin.com/in/maythinn97" target="_blank" rel="noopener">LinkedIn</a>
       <!-- TODO: drop your finalized resume PDF into this folder as resume.pdf -->
-      <a class="btn btn-ghost" href="resume.pdf" download>Résumé (PDF)</a>
+      <a class="btn btn-ghost" href="https://drive.google.com/file/d/1QacC-rVm3OAOUVi2OQWXrBkPtYs0vp01/view?usp=sharing" target="_blank" rel="noopener">Résumé (PDF)</a>
     </div>
   </div>
 </section>
@@ -461,26 +524,6 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
-
-<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Dashboard preview">
-  <button class="lb-close" aria-label="Close preview">&times;</button>
-  <img id="lb-img" src="" alt="" />
-  <div id="lb-cap" class="lb-cap"></div>
-</div>
-
-<script>
-  (function(){
-    var lb=document.getElementById('lightbox'), img=document.getElementById('lb-img'), cap=document.getElementById('lb-cap');
-    function open(src,text){img.src=src;cap.textContent=text||'';lb.classList.add('open');lb.setAttribute('aria-hidden','false');}
-    function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');img.src='';}
-    document.querySelectorAll('.shots img').forEach(function(el){
-      el.addEventListener('click',function(){var f=el.closest('figure'),c=f?f.querySelector('figcaption'):null;open(el.src,c?c.textContent:'');});
-    });
-    lb.addEventListener('click',function(e){if(e.target!==img)close();});
-    document.querySelector('.lb-close').addEventListener('click',close);
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-  })();
 </script>
 </body>
 </html>
